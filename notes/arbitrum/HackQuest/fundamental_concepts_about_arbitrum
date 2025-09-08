@@ -32,3 +32,66 @@ The two components of fees involved in processing transactions in Arbitrum One a
 
 ### Problems with Arbitrum Classic
 Although Arbitrum One has made progress in improving transaction processing speed and reducing costs, it faces issues such as ***performance and scalability limitations***, ***high transaction fees during network congestion***, and ***complex development and maintenance requirements*** due to the specially designed AVM. Furthermore, despite efforts to achieve EVM compatibility, differences still exist in certain aspects (such as gas cost calculation and block confirmation times).
+
+---
+
+## Arbitrum One
+### Arbitrum Nitro
+Arbitrum Nitro is a technical stack upgrade of Arbitrum One, bringing users ***reduced fees, increased capacity, and an overall faster experience***. The Nitro upgrade was aimed at improving the performance and efficiency of the Arbitrum One network, rather than creating a separate network.
+
+### Sequencer
+![image](https://hackmd.io/_uploads/HJC0oJhqxg.png)
+
+Unlike Ethereum, which primarily relies on transaction fees to determine the order of execution, ***Arbitrum Sequencer operates based on the order of transaction arrival***. This means that Arbitrum adopts a first-come, first-served principle in processing transactions, inserting them into a queue according to the order they are received and then submitting them to L1.
+
+### State Transition Function
+![image](https://hackmd.io/_uploads/HJmyQxnclx.png)
+
+The inputs to state transition function include two parts: the ***current state*** (all the information on the blockchain, such as account balances, smart contract code, etc.) and the ***next transaction*** (the transaction that will be processed next, which may change account balances, contract states, etc.). This means that the behavior of state transition function is entirely determined by the current chain state and the next received transaction.
+
+Once a transaction is verified and processed through state transition function, the ***blockchain's state is updated***. Additionally, state transition function sometimes generates a new Layer 2 block, containing a series of transactions and recording their results on the chain, to improve processing speed and efficiency by aggregating multiple transactions on Layer 2, reducing reliance and pressure on Ethereum.
+
+### Two-Phase Transaction Execution in Arbitrum One
+![image](https://hackmd.io/_uploads/Hy5GLencel.png)
+
+#### First Phase: Self-Processing on Layer2
+A ***"soft confirmation"*** refers to the state of the transaction after ***being processed on Layer2 and updated through state transition function***. At this point, the transaction has not yet been submitted to Ethereum and can still be altered. For users, this step signifies the transaction is complete, but there are actually more steps to ensure security.
+
+#### Second Phase: Acquiring the Transaction Sequence
+Nitro ensures the finality of transactions by ***periodically compressing the transaction sequence and posting it on the Ethereum L1 chain***, which becomes the official and final record of the transaction sequence. Once this data is confirmed on Ethereum, the related transactions are considered final, also known as "hard confirmation."
+
+### Geth Sandwich
+![image](https://hackmd.io/_uploads/Sy5nYxn9xl.png)
+
+In the "Geth sandwich" structure, ArbOS is located in the middle layer, its primary functions include parsing the data batches issued by the sequencer, calculating the gas cost on Layer 1, and collecting fees to compensate for them. ArbOS acts as a bridge in this structure, connecting the bottom layer's Geth simulating EVM contract execution with the top layer's handling of network requests and other advanced functionalities.
+
+### Fraud Proofs
+The primary purpose of the fraud proof mechanism is to ***ensure the correctness of transaction execution***. It does so by allowing any participant to challenge the correctness or authenticity of these transactions within a time window after their submission. If they believe a transaction is incorrect or fraudulent, they can submit a fraud proof to challenge the transaction. The system then verifies the challenge to ensure the correctness and security of all transactions.
+
+#### Workflow of Fraud Proofs
+1. **Submit Transactions**: Sequencer submit transactions batch to L1.
+2. **Optimistic Execution**: The makenodes validator sends the after state of those transaction to L1 rollups contract. And the rollup contract will assume this state is correct.
+3. **Challenge Period**: After submitting state to rollup contract, there is a time window that allows other participants to review these transactions. If they believe a transaction results recorded on L1 is incorrect or fraudulent, they can submit a fraud proof to challenge the transaction.
+4. **Verification of Proof**: Once a fraud proof is submitted, the system undertakes a detailed verification process to check if the challenge is valid.
+5. **Determination of Outcome**: If the challenge is valid, the incorrect transaction results recorded on L1 is revoked, ensuring correctness. If the challenge is invalid, the original transaction results recorded on L1 is confirmed as accurate.
+
+### Separation of Execution and Verification
+![image](https://hackmd.io/_uploads/ryyn2e25lg.png)
+
+The Nitro system achieves both efficient operation execution and reliable verification of execution results by using the same set of source code, but compiling it into two different forms according to the use case. For operation execution, the system uses the Go language compiler to compile the code into native code suitable for the specific computational architecture, ensuring execution efficiency. For verification operations requiring fraud proofs, the code is compiled into binary wasm format, namely WAVM code, which is more suitable for blockchain interaction, allowing for reliable verification of operation results.
+
+### Interactive Fraud Proofs
+The main benefit of interactive fraud proofs is resolving disputes off-chain through participant interaction, thus reducing reliance on the blockchain contract. This method narrows down disputes to a specific operation through a series of steps, and the blockchain contract only intervenes at this smallest point to make a final judgment, significantly reducing the blockchain's burden.
+
+### Why Arbitrum One?
+#### Arbitrum One's 4 Key Innovations
+1. Sequencing + Deterministic Execution
+2. Centered Around Geth
+3. Separating Execution from Verification
+4. Interactive Fraud Proofs in Optimistic Rollup
+
+#### Arbitrum One's Core Advantages
+1. **Closer Compatibility with EVM**: Arbitrum One offers a more consistent execution environment with the EVM by directly utilizing Geth.
+2. **Simplification**: By leveraging the existing Geth software, Arbitrum One reduces the workload required to create an L2 virtual machine. Now, code can be written in Go instead of a custom language, making it easier to understand and audit.
+3. **Lower Costs**: By separating execution from verification, Arbitrum One only compiles to WASM bytecode when a dispute occurs. In normal operations, it directly uses the node's Go code, improving efficiency and performance, thereby reducing costs for users.
+4.**Data Compression**: Arbitrum One reduces the cost of posting data on Ethereum by using widely tested compression libraries.
