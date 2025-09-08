@@ -1,0 +1,12 @@
+# Fundamental Concepts About Arbitrum
+## Introduction to Arbitrum
+
+### Core Goal
+![image](https://hackmd.io/_uploads/rJRTMZdcel.png)
+
+The core goal of Arbitrum is to ***achieve fast and cost-efficient transactions on the Ethereum network***. By using Optimistic Rollup technology, Arbitrum aims to reduce network congestion and significantly enhance the processing capacity of the Ethereum network.
+
+### Mainnet and Testnet
+![image](https://hackmd.io/_uploads/HJV3MZuqlx.png)
+
+The mainnets of Arbitrum used for actual production include ***Arbitrum One and Arbitrum Nova***, which represent the main deployments of the Arbitrum project in real applications. Testnets, such as ***Arbitrum Sepolia, Arbitrum Goerli, and Stylus testnet***, are networks for development and testing purposes and are not included in the mainnet.
