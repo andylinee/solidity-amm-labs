@@ -95,3 +95,36 @@ The main benefit of interactive fraud proofs is resolving disputes off-chain thr
 2. **Simplification**: By leveraging the existing Geth software, Arbitrum One reduces the workload required to create an L2 virtual machine. Now, code can be written in Go instead of a custom language, making it easier to understand and audit.
 3. **Lower Costs**: By separating execution from verification, Arbitrum One only compiles to WASM bytecode when a dispute occurs. In normal operations, it directly uses the node's Go code, improving efficiency and performance, thereby reducing costs for users.
 4.**Data Compression**: Arbitrum One reduces the cost of posting data on Ethereum by using widely tested compression libraries.
+
+---
+
+## Arbitrum Nova
+### Overview
+The core of AnyTrust technology is ***the creation of a trusted group, namely Data Availability Committee***, to ensure reliability and availability of data.
+
+### Data Availability Committee
+Data Availability Committee, composed of authorized nodes, is responsible for ***storing and managing data on blockchain*** and providing it to other parts of the network when needed.
+
+### Data Availability Certificate (DACert)
+![image](https://hackmd.io/_uploads/ByrqLWn5xx.png)
+
+The Data Availability Certificate primarily includes the ***hash value of the data block as its identifier, the expiration time, and evidence signed by the majority of the committee members***.
+
+### Data Availability Servers (DAS)
+![image](https://hackmd.io/_uploads/HJ2Uwb2qxg.png)
+
+The ***Sequencer API*** is an interface specifically designed for the Sequencer on the Arbitrum chain for submitting data blocks for storage, while the ***REST API*** is a globally accessible interface that allows data blocks to be retrieved via their hash values.
+
+### Collaboration Mechanism Between Sequencer and Committee
+![image](https://hackmd.io/_uploads/ByKgq-ncgg.png)
+
+1. **Data Submission**: When Sequencer has prepared a batch of data and wishes to publish it through the committee, it sends this batch of data along with a set expiration time (e.g., three weeks later) to all committee members. The committee members store this data, using the hash value of the data as an index.
+2. **Signing Process**: Subsequently, each committee member signs the hash value of the data and the expiration time, then sends the signature back to Sequencer.
+3. **Creating and Publishing DACert**: Once Sequencer has collected enough signatures, it combines these signatures to create a valid Data Availability Certificate (DACert) for this batch of data and then publishes it on the L1. This allows the L2 AnyTrust chain to use these data.
+4. **Fallback Plan**: If Sequencer cannot collect enough signatures within a few minutes, it stops attempting to publish the data through the committee and instead directly publishes the complete data on the L1 chain, similar to the practice on non-AnyTrust chains. L2 understands both methods of data publication and will process them correctly.
+
+### The Core Difference Between One and Nova
+The ***data availability*** for One/Nitro is on-chain (Ethereum mainnet), whereas for Nova, it is off-chain (Data Availability Committee, DAC).
+
+### Why Nova?
+Since Arbitrum Nova can reduce reliance on Ethereum mainnet resources, thereby lowering transaction costs and increasing processing speed, it is particularly suited for applications sensitive to transaction speed and cost, such as gaming and social media applications.
