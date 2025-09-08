@@ -10,3 +10,25 @@ The core goal of Arbitrum is to ***achieve fast and cost-efficient transactions 
 ![image](https://hackmd.io/_uploads/HJV3MZuqlx.png)
 
 The mainnets of Arbitrum used for actual production include ***Arbitrum One and Arbitrum Nova***, which represent the main deployments of the Arbitrum project in real applications. Testnets, such as ***Arbitrum Sepolia, Arbitrum Goerli, and Stylus testnet***, are networks for development and testing purposes and are not included in the mainnet.
+
+---
+
+## Arbitrum Classic
+### Overview
+Arbitrum One significantly increases transaction throughput and reduces transaction costs by using ***Optimistic Rollups*** technology. Optimistic Rollups are a Layer 2 scaling solution that operates on top of the Ethereum mainnet, providing a more efficient transaction processing method.
+
+### AVM (Arbitrum Virtual Machine)
+![image](https://hackmd.io/_uploads/ryMsMbuclx.png)
+
+The AVM (Arbitrum Virtual Machine) is a virtual machine specifically designed for Arbitrum, with the main purpose of ***executing and managing operations and states on the Arbitrum chain***. It efficiently executes programs written or compiled for the EVM (Ethereum Virtual Machine) by reading messages from the inbox, changing the chain's state, and generating outputs.
+
+### ArbOS (the second-layer state machine)
+ArbOS is software developed by Offchain Labs that handles all logic and state updates on Arbitrum, operating similarly to a computer or smartphone's ***operating system***. It is responsible for initiating startup and managing other codes on the chain and provides an environment compatible with the Ethereum Virtual Machine (EVM) for executing smart contracts. Therefore, ArbOS plays a role in Arbitrum ecosystem most similar to an operating system.
+
+### Gas and Fees
+![image](https://hackmd.io/_uploads/B1XqG-dqle.png)
+
+The two components of fees involved in processing transactions in Arbitrum One are fees for ***L1 (Ethereum mainnet) resources and fees for L2 (Arbitrum) resources***. These fees compensate for the cost of posting transaction data on the Ethereum mainnet and the cost of computation and storage on Arbitrum.
+
+### Problems with Arbitrum Classic
+Although Arbitrum One has made progress in improving transaction processing speed and reducing costs, it faces issues such as ***performance and scalability limitations***, ***high transaction fees during network congestion***, and ***complex development and maintenance requirements*** due to the specially designed AVM. Furthermore, despite efforts to achieve EVM compatibility, differences still exist in certain aspects (such as gas cost calculation and block confirmation times).
