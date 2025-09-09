@@ -166,3 +166,70 @@ The introduction of Arbitrum Stylus technology marks a significant upgrade to th
 ![image](https://hackmd.io/_uploads/HJxAEQ25gl.png)
 
 There are two Arbitrum chains: Arbitrum One and Arbitrum Nova, both of which utilize Arbitrum's Nitro technology stack at their core. However, Arbitrum One implements Rollup protocol, while Nova implements AnyTrust protocol. Users and developers can choose based on their security/transaction cost needs. Developers can also opt to create their own Arbitrum chains, which, running on Arbitrum's second layer, are referred to as Orbit chains.Arbitrum One is designed for general use, providing a solution with much more trustless and decentralization for running Ethereum-compatible smart contracts. On the other hand, Arbitrum Nova is designed for applications that require higher transaction throughput and do not necessitate full decentralization, such as gaming and social media.
+
+---
+
+
+# Arbitrum's Modular Tech Stack
+- Video: The L2 Modular Stack - Arbitrum Workshop by Swagtimus, Developer Evangelist at the Arbitrum Foundation (https://www.youtube.com/watch?v=QfP08S8pSsc
+## Modular Stack & Multi-VM Support)
+Arbitrum supports ***multiple languages and execution environments***, giving developers real flexibility on-chain:
+- In addition to ***EVM***, Arbitrum supports ***WebAssembly (WASM)*** natively, meaning you can write contracts in ***Rust, C, or C++***
+- The ***Stylus upgrade allows EVM and WASM VMs to run side-by-side***, with cross-calling support 🤯
+## Multiple Node Implementations & Decentralized Resilience
+Arbitrum has three node clients, each with different performance focuses:
+- ***Nitro*** (standard)
+- ***Nevermind*** (ultra-performant)
+- ***Aragon*** (storage-optimized)
+
+More node types = greater decentralization and network resilience.
+## Time Boost: Fair MEV Governance Mechanism
+No more sandwich attacks!
+- A new ***Express Lane auction*** mechanism allows only ***backrunning***, not frontrunning
+- MEV profits are redistributed to the ***DAO***, improving fairness and sustainability
+## Orbit: Launch Your Own Arbitrum Chain
+Want to build your own L2 or L3? ***Orbit SDK*** makes it easy:
+- ***Customize gas tokens, add precompiles, and define permission systems***
+- Modular by design, adaptable for all kinds of use cases
+## Cross-Chain Interoperability & Universal Intent Engine
+Worried about multi-chain fragmentation? Arbitrum is building a ***unified cross-chain architecture***:
+- Enables ***interoperability of assets and contract calls across Arbitrum chains***
+- Designed to support ***low-trust, permissionless*** cross-chain messaging infrastructure
+
+
+---
+
+
+# Open House: Unlocking High-Performance Rust Smart Contracts on Arbitrum Stylus with OpenZeppelin
+- Lecturers: 
+    - Arbitrum Developer Evangelist Swagtimus (@swagtimus)
+    - OpenZeppelin Engineer Daniel Bigos (@bidzyyys)
+- Video link: https://www.youtube.com/watch?v=yFrc3dwx9vg 
+
+## Guidelines
+### What Is Stylus—and Why Does It Matter?
+- Stylus is Arbitrum’s WASM smart contract runtime that supports ***Rust / C / C++***
+- It runs ***in parallel with the EVM*** and enables ***cross-VM interoperability***
+- Offers much ***higher performance and lower gas fees***
+### Why Write Smart Contracts in Rust?
+- Strong static typing and compile-time safety
+- Rich ecosystem and dev tools (like `cargo`, `crates.io`)
+- Compared to Solidity, Rust offers ***better performance, testability, and safety***
+### Introducing the OpenZeppelin Stylus Library
+- OpenZeppelin is ***porting its battle-tested security libraries*** to the Stylus Rust environment
+- Rust developers can now leverage tools like `AccessControl`, `ERC20`, and `Ownable`—just like in the EVM world
+### End-to-End Dev Experience Walkthrough
+- Install Stylus CLI → Scaffold a Rust contract project
+- Import OpenZeppelin libraries → Write, compile, and deploy contracts
+- Showcase of ***Rust-Solidity contract interoperability***
+
+
+---
+1. What is the core goal of Arbitrum? 
+> The core goal of Arbitrum is to achieve fast and cost-efficient transactions on the Ethereum network. By using Optimistic Rollup technology, Arbitrum aims to reduce network congestion and significantly enhance the processing capacity of the Ethereum network.
+
+2. Which networks are included in Arbitrum's mainnet?
+> The mainnets of Arbitrum used for actual production include Arbitrum One and Arbitrum Nova, which represent the main deployments of the Arbitrum project in real applications. Testnets, such as Arbitrum Sepolia, Arbitrum Goerli, and Stylus testnet, are networks for development and testing purposes and are not included in the mainnet.
+
+3. The main advantage of Orbit chain in providing custom gas tokens is
+> The main advantage of the Orbit chain in offering custom gas tokens is that it allows any ERC-20 token to be used as the native gas token for paying gas fees on the network. This enables projects to seamlessly integrate with their application ecosystems, offering users more flexible payment options. By supporting alternative ERC-20 tokens as a method of gas payment, the Orbit chain not only enhances its adaptability and user experience but also provides projects with more customization and optimization opportunities.
