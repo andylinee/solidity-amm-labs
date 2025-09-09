@@ -128,3 +128,16 @@ The ***data availability*** for One/Nitro is on-chain (Ethereum mainnet), wherea
 
 ### Why Nova?
 Since Arbitrum Nova can reduce reliance on Ethereum mainnet resources, thereby lowering transaction costs and increasing processing speed, it is particularly suited for applications sensitive to transaction speed and cost, such as gaming and social media applications.
+
+---
+
+## Arbitrum Orbit
+### Overview
+![image](https://hackmd.io/_uploads/r136Ff29gl.png)
+
+Arbitrum Orbit allows users to build their own ***Layer 3***, a layer established on top of the Ethereum mainnet (Layer 1) and Layer 2, to meet their specific use scenarios and business requirements.
+
+### Why Orbit?
+The main advantage of the Orbit chain in offering custom gas tokens is that it ***allows any ERC-20 token to be used as the native gas token for paying gas fees on the network***. This enables projects to seamlessly integrate with their application ecosystems, offering users more flexible payment options. By supporting alternative ERC-20 tokens as a method of gas payment, the Orbit chain not only enhances its adaptability and user experience but also provides projects with more customization and optimization opportunities.
+
+The main benefit of EVM+ compatibility on the Orbit chain is that it ***provides developers with the ability to use multiple programming languages to develop EVM-compatible smart contracts***. This not only increases development flexibility, allowing developers to choose the language that best fits their expertise and project needs, but it also expands the developer community that can participate in development. By supporting languages like Solidity, C, C++, and Rust, the Orbit chain ensures a broader capability for smart contract development and deployment, thereby fostering the construction of a richer and more efficient dApp ecosystem.
