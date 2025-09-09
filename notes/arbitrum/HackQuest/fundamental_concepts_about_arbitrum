@@ -141,3 +141,28 @@ Arbitrum Orbit allows users to build their own ***Layer 3***, a layer establishe
 The main advantage of the Orbit chain in offering custom gas tokens is that it ***allows any ERC-20 token to be used as the native gas token for paying gas fees on the network***. This enables projects to seamlessly integrate with their application ecosystems, offering users more flexible payment options. By supporting alternative ERC-20 tokens as a method of gas payment, the Orbit chain not only enhances its adaptability and user experience but also provides projects with more customization and optimization opportunities.
 
 The main benefit of EVM+ compatibility on the Orbit chain is that it ***provides developers with the ability to use multiple programming languages to develop EVM-compatible smart contracts***. This not only increases development flexibility, allowing developers to choose the language that best fits their expertise and project needs, but it also expands the developer community that can participate in development. By supporting languages like Solidity, C, C++, and Rust, the Orbit chain ensures a broader capability for smart contract development and deployment, thereby fostering the construction of a richer and more efficient dApp ecosystem.
+
+---
+
+## Arbitrum Stylus
+### Overview
+The introduction of Arbitrum Stylus technology marks a significant upgrade to the Arbitrum Nitro technology stack, with one of its most notable changes being the addition of a second virtual machine—WebAssembly (WASM) virtual machine—to the EVM. This change brings several advantages, the most important of which is significantly ***expanding the range of programming languages available for blockchain contract development***.
+
+### How does Stylus Work?
+![image](https://hackmd.io/_uploads/BJM-mmn5xl.png)
+
+1. **Coding**: Developers can choose any language that can be compiled into WASM (WebAssembly) to write smart contracts. Initially, Stylus will support languages such as Rust, C, and C++, with Rust offering a rich development toolkit.
+2. **Compiling**: Smart contract code is first compiled from a high-level language (such as Rust, C, or C++) into WASM format. It is then compiled into native code suitable for specific hardware platforms using a tool called ArbWasm.
+3. **Executing**: The compiled program executes within the Wasmer runtime, a high-performance runtime specifically designed for WASM, intended to run WASM files in non-browser environments.
+4. **Verifying**: In most cases, the execution of smart contracts will compile directly into native code and run smoothly. In the event of a dispute among verifiers, Stylus uses the Nitro technology explained earlier, converting the execution history back into WASM format for verification and dispute resolution on Ethereum.
+
+### Why Stylus?
+1. **Native Ethereum Development with Popular Programming Languages**:Build applications on Arbitrum's vast ecosystem using popular WASM-compatible languages like Rust, C, and C++, combining popular internet programming languages with native blockchain smart contract languages.
+2. **Full Composability**:Solidity contracts and Stylus contracts are fully interoperable. If working in Solidity, developers can call Rust programs. If working in Rust, all Solidity features are directly usable.
+3. **Faster Computation, Lower Costs**:Due to the efficiency of WASM programs, Stylus contracts are over ten times faster and incur significantly lower gas fees. When using Stylus, the cost of memory is reduced by 100-500 times.
+4. **Enabling New Use Cases**:Access to the mature WASM ecosystem through Stylus opens up new EVM use cases that were previously unattainable. For example, bringing existing games written in C++ onto the blockchain and accessing computation-intensive AI models becomes much easier.
+
+## Conclusion
+![image](https://hackmd.io/_uploads/HJxAEQ25gl.png)
+
+There are two Arbitrum chains: Arbitrum One and Arbitrum Nova, both of which utilize Arbitrum's Nitro technology stack at their core. However, Arbitrum One implements Rollup protocol, while Nova implements AnyTrust protocol. Users and developers can choose based on their security/transaction cost needs. Developers can also opt to create their own Arbitrum chains, which, running on Arbitrum's second layer, are referred to as Orbit chains.Arbitrum One is designed for general use, providing a solution with much more trustless and decentralization for running Ethereum-compatible smart contracts. On the other hand, Arbitrum Nova is designed for applications that require higher transaction throughput and do not necessitate full decentralization, such as gaming and social media.
