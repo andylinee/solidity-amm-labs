@@ -135,3 +135,27 @@ typescripttitle: updateData.title?.trim() ?? currentTask.title
 ```code=
 typescripterror instanceof Error ? error.message : '未知錯誤'
 ```
+---
+
+## TypeScript 概念總結
+### 基礎概念
+
+* 型別註釋：`function createTask(input: CreateTaskInput): Promise<ApiResponse<Task>>`
+* 介面定義：`interface Task, interface CreateTaskInput`
+* 列舉：`enum TaskStatus`
+* 可選屬性：`description?: string`
+
+### 進階概念
+
+* 泛型：`ApiResponse<T>`
+* 類別：`class TaskService`
+* 存取修飾符：`private, public`
+* 非同步程式設計：`async/await`
+* 型別守衛：`status is TaskStatus`
+
+### 實用技巧
+
+* 展開運算子：`{...currentTask, ...updateData}`
+* 可選串聯：`task.description?.trim()`
+* 空值合併：`title ?? currentTask.title`
+* 模組系統：`import/export`
